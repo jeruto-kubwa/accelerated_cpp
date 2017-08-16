@@ -1,5 +1,5 @@
-#ifndef GUARD_median_h
-#define GUARD_median_h
+#ifndef GUARD_url_h
+#define GUARD_url_h
 
 #include <vector>
 #include <string>

@@ -1,5 +1,5 @@
-#ifndef GUARD_grade_h
-#define GUARD_grade_h
+#ifndef GUARD_words_h
+#define GUARD_words_h
 
 #include <vector>
 #include <string>

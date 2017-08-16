@@ -15,9 +15,6 @@ int main() {
 
     vector<string> words = split(s);
 
-
- //   cout << words[0] << endl;
-
     print_string_vector(words);
   }
 
