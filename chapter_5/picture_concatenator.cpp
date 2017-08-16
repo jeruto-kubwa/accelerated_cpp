@@ -15,12 +15,16 @@ int main() {
 
   read_picture(cin, top);
 
-  bottom.push_back("THIS IS THE BOTTOM");
-  bottom.push_back("**********");
-  bottom.push_back(" ******** ");
-  bottom.push_back("  ******  ");
-  bottom.push_back("   ****   ");
-  bottom.push_back("    **    ");
+  cout << "Please enter the bottom picture: " << endl;
+
+  read_picture(cin, bottom);
+
+  // bottom.push_back("THIS IS THE BOTTOM");
+  // bottom.push_back("**********");
+  // bottom.push_back(" ******** ");
+  // bottom.push_back("  ******  ");
+  // bottom.push_back("   ****   ");
+  // bottom.push_back("    **    ");
 
   cout << "\nDisplaying the virtically concatenated picture:\n" << endl;
 

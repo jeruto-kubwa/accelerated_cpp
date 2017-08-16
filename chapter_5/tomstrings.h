@@ -1,5 +1,5 @@
-#ifndef GUARD_median_h
-#define GUARD_median_h
+#ifndef GUARD_tomstrings_h
+#define GUARD_tomstrings_h
 
 #include <vector>
 #include <string>

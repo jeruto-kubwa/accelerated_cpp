@@ -32,7 +32,7 @@ string::size_type width(const vector<string>& v) {
 //   return ret;
 // } 
 
-// fram implementation with iterators 
+// frame implementation with iterators 
 vector<string> frame(const vector<string>& v) {
   vector<string> ret;
   string::size_type maxlen = width(v);
@@ -72,29 +72,58 @@ vector<string> vcat(const vector<string>& top, const vector<string>& bottom) {
 }
 
 // vertically concatenate string pictures 
+// vector<string> hcat(const vector<string>& left, const vector<string>& right) {
+//   vector<string> ret;
+
+//   // width of left picture + 1 for padding between pictures 
+//   vector<string>::size_type width1 = width(left) + 1;
+
+//   vector<string>::size_type i=0, j=0;
+
+//   while(i != left.size() or j != right.size()) {
+//     string s;
+
+//     if(i != left.size())
+//       s += left[i++];
+
+//     s += string(width1 - s.size(), ' ');
+
+//     if(j != right.size())
+//       s += right[j++];
+
+//     ret.push_back(s);
+//   }
+//   return ret;
+// }
+
+// hcat implementation with iterators
 vector<string> hcat(const vector<string>& left, const vector<string>& right) {
   vector<string> ret;
+
+  typedef vector<string>::const_iterator iter;
 
   // width of left picture + 1 for padding between pictures 
   vector<string>::size_type width1 = width(left) + 1;
 
-  vector<string>::size_type i=0, j=0;
+  iter i = left.begin(); 
+  iter j = right.begin();
 
-  while(i != left.size() or j != right.size()) {
+  while(i != left.end() or j != right.end()) {
     string s;
 
-    if(i != left.size())
-      s += left[i++];
+    if(i != left.end())
+      s += *(i++);
 
     s += string(width1 - s.size(), ' ');
 
-    if(j != right.size())
-      s += right[j++];
+    if(j != right.end())
+      s += *(j++);
 
     ret.push_back(s);
   }
   return ret;
 }
+
 
 
 // read a sequence of strings from input stream to vector<string>

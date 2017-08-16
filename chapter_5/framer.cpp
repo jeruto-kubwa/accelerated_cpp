@@ -1,9 +1,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
-
-#include "tomstrings.h"
 #include "split.h"
+#include "tomstrings.h"
 
 using namespace std;
 
