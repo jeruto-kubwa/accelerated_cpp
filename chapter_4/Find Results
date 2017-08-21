@@ -1,0 +1,114 @@
+Searching 21 files for "final"
+
+/Users/tomemmens/Documents/cpp_workspace/accelerated_cpp/chapter_4/grade.cpp:
+    9  using namespace std;
+   10  
+   11: double grade(double midterm, double final, double homework) {
+   12:   return 0.2 * midterm  + 0.4 * final + 0.4 * homework;
+   13  }
+   14  
+   15: double grade(double midterm, double final, const vector<double>& hw) {
+   16    if(hw.size() == 0)
+   17        throw domain_error("Student has done no hw.");
+   18  
+   19:   return grade(midterm, final, median(hw));
+   20  }
+   21  
+   22  double grade(const Student_info& s) {
+   23:   return grade(s.midterm, s.final, s.homework);
+   24  }
+   25  
+   ..
+   37      return grade(s);
+   38    } catch(domain_error) {
+   39:     return grade(s.midterm, s.final, 0.0);
+   40    }
+   41  } 
+   42  
+   43  double average_grade(const Student_info& s) {
+   44:   return grade(s.final, s.midterm, mean(s.homework));
+   45  }
+   46  
+   ..
+   52                back_inserter(nonzero), 0);
+   53    if(nonzero.empty())
+   54:     return grade(s.midterm, s.final, 0);
+   55    else 
+   56:     return grade(s.midterm, s.final, nonzero);
+   57  }
+   58  
+
+/Users/tomemmens/Documents/cpp_workspace/accelerated_cpp/chapter_4/Student_info.cpp:
+   13  
+   14  istream& read(istream& is, Student_info& s) {
+   15:   // read and store the student's name and midterm and final grades
+   16:   is >> s.name >> s.midterm >> s.final;
+   17  
+   18    read_hw(is, s.homework);
+
+/Users/tomemmens/Documents/cpp_workspace/accelerated_cpp/chapter_4/Student_info.h:
+   14  struct Student_info { 
+   15    std::string name;
+   16:   double midterm, final;
+   17    std::vector<double> homework;
+   18  }; 
+
+12 matches across 3 files
+
+
+Searching 21 files for "final"
+
+/Users/tomemmens/Documents/cpp_workspace/accelerated_cpp/chapter_4/grade.cpp:
+    9  using namespace std;
+   10  
+   11: double grade(double midterm, double final, double homework) {
+   12:   return 0.2 * midterm  + 0.4 * final + 0.4 * homework;
+   13  }
+   14  
+   15: double grade(double midterm, double final, const vector<double>& hw) {
+   16    if(hw.size() == 0)
+   17        throw domain_error("Student has done no hw.");
+   18  
+   19:   return grade(midterm, final, median(hw));
+   20  }
+   21  
+   22  double grade(const Student_info& s) {
+   23:   return grade(s.midterm, s.final, s.homework);
+   24  }
+   25  
+   ..
+   37      return grade(s);
+   38    } catch(domain_error) {
+   39:     return grade(s.midterm, s.final, 0.0);
+   40    }
+   41  } 
+   42  
+   43  double average_grade(const Student_info& s) {
+   44:   return grade(s.midterm, s.final, mean(s.homework));
+   45  }
+   46  
+   ..
+   52                back_inserter(nonzero), 0);
+   53    if(nonzero.empty())
+   54:     return grade(s.midterm, s.final, 0);
+   55    else 
+   56:     return grade(s.midterm, s.final, nonzero);
+   57  }
+   58  
+
+/Users/tomemmens/Documents/cpp_workspace/accelerated_cpp/chapter_4/Student_info.cpp:
+   13  
+   14  istream& read(istream& is, Student_info& s) {
+   15:   // read and store the student's name and midterm and final grades
+   16:   is >> s.name >> s.midterm >> s.final;
+   17  
+   18    read_hw(is, s.homework);
+
+/Users/tomemmens/Documents/cpp_workspace/accelerated_cpp/chapter_4/Student_info.h:
+   14  struct Student_info { 
+   15    std::string name;
+   16:   double midterm, final;
+   17    std::vector<double> homework;
+   18  }; 
+
+12 matches across 3 files

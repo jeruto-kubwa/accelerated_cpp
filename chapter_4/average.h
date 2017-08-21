@@ -3,6 +3,6 @@
 
 #include <vector>
 double median(std::vector<double>);
-double mean(std::vector<double>);
+double mean(const std::vector<double>&);
 
 #endif

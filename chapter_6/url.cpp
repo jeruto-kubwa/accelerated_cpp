@@ -4,7 +4,8 @@
 
 using namespace std;
 
-bool not_url_char(char c) {
+bool not_url_char(char c) 
+{
   const static string url_ch = "~;/?:@=&$-_.+!*'(),";
 
   return !(isalnum(c) || find(url_ch.begin(), url_ch.end(), c) != url_ch.end()); 
@@ -38,11 +39,21 @@ string::const_iterator url_beg(string::const_iterator b, string::const_iterator 
 }
 
 // find end of a url in range [b,e)
-string::const_iterator url_end(string::const_iterator b, string::const_iterator e){
+string::const_iterator url_end(string::const_iterator b, string::const_iterator e)
+{
   return find_if(b, e, not_url_char);
 }
 
-vector<string> find_urls(const string& s) {
+// remove trailing fullstop
+void remove_fullstop(string& s) 
+{
+  if(s.back() == '.') 
+    s.pop_back();
+}
+
+// find urls in a block of text
+vector<string> find_urls(const string& s) 
+{
   vector<string> ret;
 
   typedef string::const_iterator iter;
@@ -55,10 +66,14 @@ vector<string> find_urls(const string& s) {
 
     if(b != e) {
       iter after = url_end(b, e);
-      ret.push_back(string(b, after));
+      string url(b, after);
+      remove_fullstop(url);
+      ret.push_back(url);
       b = after;
     }
   } 
   return ret;
 }
+
+
 

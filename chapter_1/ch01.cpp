@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-void ex01() {
+void ex01() 
+{
   cout << "Please enter name: " << endl;
   string name;
   cin >> name;
@@ -9,7 +10,8 @@ void ex01() {
 
 }
 
-void ex02() {
+void ex02() 
+{
   cout << "Please enter first name: " << endl;
   string name;
   cin >> name;
@@ -29,7 +31,8 @@ void ex02() {
   cout << first << endl;
 }
 
-void q04() {
+void q04() 
+{
   { 
     const std::string s = "a string"; std::cout << s << std::endl;
     { 
@@ -38,7 +41,8 @@ void q04() {
   }
 }
 
-void q05() {
+void q05() 
+{
   { 
     std::string s = "a string"; // scope of s is this code block and all children code blocks
     { 
@@ -48,7 +52,8 @@ void q05() {
   }
 }
 
-void q06() {
+void q06() 
+{
   std::cout << "What is your name? "; std::string name;
   std::cin >> name;
   std::cout << "Hello, " << name
@@ -59,7 +64,8 @@ void q06() {
 
 
 
-int main() {
+int main() 
+{
   q06();  
   return 0;
 }

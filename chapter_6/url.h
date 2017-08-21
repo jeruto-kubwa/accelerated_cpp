@@ -10,6 +10,8 @@ std::string::const_iterator url_beg(std::string::const_iterator, std::string::co
 
 std::string::const_iterator url_end(std::string::const_iterator, std::string::const_iterator);
 
+void format_url(std::string&);
+
 std::vector<std::string> find_urls(const std::string&);
 
 #endif

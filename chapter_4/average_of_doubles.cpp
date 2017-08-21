@@ -5,7 +5,8 @@
 using std::vector;      using std::cout;
 using std::endl;        using std::cin;
 
-int main() {
+int main() 
+{
   cout << "Please enter a list of doubles folloed by an EOF character: " << endl;
   vector<double> nums;
 

@@ -9,7 +9,8 @@ using std::max;         using std::string;
 using std::endl;        using std::setw;
 using std::streamsize;  using std::setprecision;
 
-void q01() {
+void q01() 
+{
   string::size_type maxlen = 10;
   Student_info s;
     // read and store all of the students' data.
@@ -17,13 +18,15 @@ void q01() {
   cout << max(maxlen, s.name.size()) << endl;
 }
 
-void q02() {
+void q02() 
+{
   for(int i=0; i<1000; ++i) { 
     cout << setw(4) << i << setw(7) << i*i << endl;
   }
 }
 
-void q03() {
+void q03() 
+{
   cout << "Please enter the boundaries of an asymmetric range of ints: " << endl;
   int a, b;
   cin >> a >> b;
@@ -44,7 +47,8 @@ void q03() {
   }
 }
 
-void q04() {
+void q04() 
+{
   cout << "Please enter the boundaries of an asymmetric range of doubles: " << endl;
   double a, b;
   cin >> a >> b;

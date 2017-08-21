@@ -1,4 +1,5 @@
 #include <algorithm> // to get the declaration of sort
+#include <numeric>
 #include <stdexcept> // to get the declaration of domain_error
 #include <vector> // to get the declaration of vector
 
@@ -6,7 +7,8 @@ using std::vector;      using std::domain_error;
 
 // return the median value of a vector<double>
 // note calling this function copies the entire argument vector 
-double median(vector<double> vec) {   
+double median(vector<double> vec) 
+{   
   typedef vector<double>::size_type vec_sz;
   vec_sz size = vec.size();
 
@@ -21,10 +23,15 @@ double median(vector<double> vec) {
                                   : vec[mid];
 }
 
-double mean(vector<double> vec) {
-  double sum = 0;
-  for(vector<double>::size_type i=0; i<vec.size(); ++i) {
-    sum += vec[i];
-  }
-  return sum / vec.size();
+// double mean(vector<double> vec) {
+//   double sum = 0;
+//   for(vector<double>::size_type i=0; i<vec.size(); ++i) {
+//     sum += vec[i];
+//   }
+//   return sum / vec.size();
+// }
+
+double mean(const vector<double>& v) 
+{
+  return accumulate(v.begin(), v.end(), 0) / v.size();
 }

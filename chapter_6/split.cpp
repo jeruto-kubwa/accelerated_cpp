@@ -4,15 +4,18 @@
 
 using namespace std;
 
-bool space(char c) {
+bool space(char c) 
+{
   return isspace(c);
 }
 
-bool not_space(char c) {
+bool not_space(char c) 
+{
   return !isspace(c);
 }
 
-vector<string> split(const string& s) {
+vector<string> split(const string& s) 
+{
   vector<string> ret;
 
   typedef string::const_iterator iter;

@@ -6,7 +6,8 @@
 # include <vector>
 using namespace std;
 
-vector<double> find_quartiles(vector<double> vec) {
+vector<double> find_quartiles(vector<double> vec) 
+{
 
   double lq, median, uq;
   vector<double> result;
@@ -68,7 +69,8 @@ vector<double> find_quartiles(vector<double> vec) {
 }
 
 // find the median of a vector or doubles  
-double find_median(vector<double> vec) { 
+double find_median(vector<double> vec) 
+{ 
 
   typedef vector<double>::size_type vec_sz;
   vec_sz size = vec.size();
@@ -82,8 +84,8 @@ double find_median(vector<double> vec) {
 }
 
 // find the median of a vector or doubles  
-double find_lower_quartile(vector<double> vec) { 
-
+double find_lower_quartile(vector<double> vec) 
+{ 
   typedef vector<double>::size_type vec_sz;
   vec_sz size = vec.size();
 
@@ -96,8 +98,8 @@ double find_lower_quartile(vector<double> vec) {
 }
 
 // find the median of a vector or doubles  
-double find_upper_quartile(vector<double> vec) { 
-
+double find_upper_quartile(vector<double> vec) 
+{ 
   typedef vector<double>::size_type vec_sz;
   vec_sz size = vec.size();
 
@@ -109,7 +111,8 @@ double find_upper_quartile(vector<double> vec) {
   return median;                                
 }
 
-void median_grade() {
+void median_grade() 
+{
   cout << "Please enter your midterm and final grades seperated " 
           "by a space and press enter: " << endl;
 
@@ -139,11 +142,10 @@ void median_grade() {
 
   cout << "Your final grade is: " << setprecision(3) 
     << 0.2 * midterm + 0.4 * final + 0.4 * median << setprecision(prec) << endl;
-
 }
 
-void q02() {
-
+void q02() 
+{
   cout << "Please enter your homework grades seperated " 
           "by spaces and then press ctrl+D: " << endl;
 
@@ -161,7 +163,8 @@ void q02() {
 }
 
 // Write a program to count how many times each distinct word appears in its input.
-void q03() {
+void q03() 
+{
   cout << "Please enter a string of words seperated by spaces: " << endl;
 
   string w;
@@ -211,7 +214,8 @@ void q03() {
 }
 
 // write a program to report the length of the longest and shortest string in its input.
-void q04() {
+void q04() 
+{
   cout << "Please enter a string of words seperated by spaces: " << endl;
 
   string w;
@@ -245,7 +249,8 @@ void q04() {
        << shortest.size() << " characters long." << endl; 
 }
 
-void q05() {
+void q05() 
+{
 
   vector<string> names;
   string name;
@@ -292,7 +297,8 @@ void q05() {
 
 }
 
-void q06() {
+void q06() 
+{
 
   cout << "Please enter your first name: ";
   string name;
@@ -328,7 +334,8 @@ void q06() {
 
 }
 
-int main(){
+int main()
+{
   q06();
   return 0;
 }

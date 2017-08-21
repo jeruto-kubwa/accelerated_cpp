@@ -15,7 +15,8 @@ using std::setprecision;  using std::streamsize;
 using std::max;
 
 
-int main() {
+int main() 
+{
   vector<Student_info> students;
   Student_info record;
   string::size_type maxlen = 0; // length of longest name

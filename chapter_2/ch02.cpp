@@ -2,7 +2,8 @@
 #include <string>
 using namespace std;
 
-void ex01() {
+void ex01() 
+{
   // ask for the person's name
   std::cout << "Please enter your first name: ";
   
@@ -66,7 +67,8 @@ void ex01() {
 
 // below two functions are for q05
 
-void print_a_rectangle() { // print a rectangle 
+void print_a_rectangle() 
+{ // print a rectangle 
 
   int w, h;
   
@@ -97,7 +99,8 @@ void print_a_rectangle() { // print a rectangle
 //  *     *    4 : 5 
 // * * * * *    5
 
-void print_a_triangle() { // print a triangle
+void print_a_triangle() 
+{ // print a triangle
   int h;
   cout << "Please provide triangle height in rows: " << endl;
   cin >> h;
@@ -124,7 +127,8 @@ void print_a_triangle() { // print a triangle
   cout << side_space << '*' << side_space << endl;  // print the peak 
 }
 
-void q06() {
+void q06() 
+{
   int i = 1;
   int product = 1;
   while (i < 10) {
@@ -134,7 +138,8 @@ void q06() {
   cout << product << endl;
 }
 
-void q08() {
+void q08() 
+{
   cout << "Provide two integers: " << endl;
   int a, b;
   cin >> a >> b;
@@ -148,7 +153,8 @@ void q08() {
 }
 
 
-int main() {
+int main() 
+{
   q10();  
   return 0;
 }

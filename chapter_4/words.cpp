@@ -8,7 +8,8 @@ using std::string;       using std::cin;
 using std::cout;         using std::endl;
 
 // read words from stream into a vector
-istream& read_words(istream& in, vector<string>& words) {
+istream& read_words(istream& in, vector<string>& words) 
+{
   if(in) {
     words.clear(); // clear any contents of words
 
@@ -23,7 +24,8 @@ istream& read_words(istream& in, vector<string>& words) {
 
 // Finds the distinct words in a vector of strings and writes the results 
 // into a new vector<string> and a correspoding vector<int> with the word frequencies 
-void count_words(vector<string> words, vector<string>& distinct_words, vector<int>& word_counts) {
+void count_words(vector<string> words, vector<string>& distinct_words, vector<int>& word_counts) 
+{
 
   distinct_words.clear(); // ensure results vectors are clear
   word_counts.clear();
@@ -51,7 +53,8 @@ void count_words(vector<string> words, vector<string>& distinct_words, vector<in
 }
 
 // print a vector<string> of words to std out
-void display_words(const vector<string>& words) {
+void display_words(const vector<string>& words) 
+{
    for(vector<string>::size_type i=0; i<words.size()-1; ++i) {
     cout << words[i] << ", ";
   }
@@ -60,7 +63,8 @@ void display_words(const vector<string>& words) {
 
 // print a vector<string> of words and corresponding word counts to std out
 void display_word_counts(const vector<string>& words, 
-                         const vector<int>& word_counts) {
+                         const vector<int>& word_counts) 
+{
    for(vector<string>::size_type i=0; i<words.size(); ++i) {
     cout << words[i] << " occured " << word_counts[i] << " times." << endl;
   }

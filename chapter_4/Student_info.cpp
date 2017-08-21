@@ -3,35 +3,28 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <algorithm>
 #include "grade.h"
 
 using namespace std;
 
-bool compare(const Student_info& x, const Student_info& y) {
+bool compare(const Student_info& x, const Student_info& y) 
+{
   return x.name < y.name;
 }
 
 istream& read(istream& is, Student_info& s) {
   // read and store the student's name and midterm and final grades
-  double midterm;
-  double final;
-  vector<double> homework;
- 
-  is >> s.name >> midterm >> final;
+  is >> s.name >> s.midterm >> s.final;
 
-  read_hw(is, homework);
+  read_hw(is, s.homework);
   
-  try {
-    s.overall_grade = grade(midterm, final, homework); 
-  } catch(domain_error e) {
-    s.overall_grade = -1;
-  }
-
   return is;
 }
 
 // read a sequence of doubles from input stream to vector<double>
-istream& read_hw(istream& in, vector<double>& hw) {
+istream& read_hw(istream& in, vector<double>& hw) 
+{
   if(in) {
     // clear any existing contents of the hw vector 
     hw.clear();
@@ -47,7 +40,8 @@ istream& read_hw(istream& in, vector<double>& hw) {
 }
 
 // print students' names and overall grades to std output
-void display_students(const vector<Student_info>& students) {
+void display_students(const vector<Student_info>& students) 
+{
     // print out the data
     for(vector<Student_info>::size_type i=0; i<students.size(); ++i) {
       
@@ -55,14 +49,15 @@ void display_students(const vector<Student_info>& students) {
       cout << students[i].name << string(20 - students[i].name.size(), ' ');
 
       streamsize prec = cout.precision();
-      cout << setprecision(3) << students[i].overall_grade << setprecision(prec);
+      cout << setprecision(3) << grade(students[i]) << setprecision(prec);
         
       cout << endl;
     }
 }
 
 // print students' names and overall grades to std output
-void display_students(const list<Student_info>& students) {
+void display_students(const list<Student_info>& students) 
+{
     // print out the data
     for(list<Student_info>::const_iterator iter = students.begin(); 
          iter!=students.end(); ++iter) {
@@ -72,7 +67,7 @@ void display_students(const list<Student_info>& students) {
       cout << iter->name << string(20 - (iter->name).size(), ' ');
 
       streamsize prec = cout.precision();
-      cout << setprecision(3) << iter->overall_grade << setprecision(prec);
+      cout << setprecision(3) << grade(*iter)<< setprecision(prec);
         
       cout << endl;
     }
@@ -80,41 +75,41 @@ void display_students(const list<Student_info>& students) {
 
 
 // // extract the failing students from a vector<Student_info> of students
-vector<Student_info> extract_fails(vector<Student_info>& students) {
-  vector<Student_info> fail;
-  vector<Student_info>::iterator iter = students.begin();
+// vector<Student_info> extract_fails(vector<Student_info>& students) {
+//   vector<Student_info> fail;
+//   vector<Student_info>::iterator iter = students.begin();
   
-  while(iter != students.end()){
-    if(fgrade(*iter)) {
-      fail.push_back(*iter);
-      // erase returns an iterator that is positioned on 
-      // the element that follows the one that we just erased 
-      iter = students.erase(iter); 
-    } else {
-      ++iter;
-    }
-  }
-  return fail;
-}
+//   while(iter != students.end()){
+//     if(fgrade(*iter)) {
+//       fail.push_back(*iter);
+//       // erase returns an iterator that is positioned on 
+//       // the element that follows the one that we just erased 
+//       iter = students.erase(iter); 
+//     } else {
+//       ++iter;
+//     }
+//   }
+//   return fail;
+// }
 
 // lists are optimized for fast insertion and deletion anywhere 
 // within the container. This method is faster for large inputs.
-list<Student_info> extract_fails(list<Student_info>& students) {
-  list<Student_info> fail;
-  list<Student_info>::iterator iter = students.begin();
+// list<Student_info> extract_fails(list<Student_info>& students) {
+//   list<Student_info> fail;
+//   list<Student_info>::iterator iter = students.begin();
   
-  while(iter != students.end()){
-    if(fgrade(*iter)) {
-      fail.push_back(*iter);
-      // erase returns an iterator that is positioned on 
-      // the element that follows the one that we just erased 
-      iter = students.erase(iter); 
-    } else {
-      ++iter;
-    }
-  }
-  return fail;
-}
+//   while(iter != students.end()){
+//     if(fgrade(*iter)) {
+//       fail.push_back(*iter);
+//       // erase returns an iterator that is positioned on 
+//       // the element that follows the one that we just erased 
+//       iter = students.erase(iter); 
+//     } else {
+//       ++iter;
+//     }
+//   }
+//   return fail;
+// }
 
 
 
@@ -156,4 +151,40 @@ vector<Student_info> extract_fails(vector<Student_info>& students) {
   return fail;
 }
 */
+
+// Below is the version of extract fails introduced in chapter 6 
+// using the algorithm library
+
+// Two passs solution:
+
+// vector<Student_info> extract_fails(vector<Student_info>& students) {
+//   vector<Student_info> fail;
+//   remove_copy_if(students.begin(), students.end(),
+//                  back_inserter(fail), pgrade);
+//   students.erase(remove_if(students.begin(), students.end(), fgrade), students.end());
+//   return fail;
+// }
+
+
+// One pass solution
+
+vector<Student_info> extract_fails(vector<Student_info>& students) 
+{
+  vector<Student_info>::const_iterator iter =
+    stable_partition(students.begin(), students.end(), pgrade);
+  vector<Student_info> fail(iter, students.end());
+  students.erase(iter, students.end());
+  return fail;
+}
+
+// Extract the students that did not do all the homework exercises
+vector<Student_info> extract_didnt(vector<Student_info>& students)
+{
+  vector<Student_info>::const_iterator iter =
+    stable_partition(students.begin(), students.end(), did_all_hw);
+  vector<Student_info> didnt(iter, students.end());
+  students.erase(iter, students.end());
+  return didnt; 
+}
+
 

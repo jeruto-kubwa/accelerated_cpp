@@ -7,7 +7,8 @@
 
 using namespace std;
 
-int main() {
+int main() 
+{
   
   ifstream infile("article.txt");
   string s;
@@ -20,13 +21,7 @@ int main() {
 
   }
 
-
-  for(vector<string>::const_iterator i = urls.begin();
-      i != urls.end(); ++i) {
-    cout << (*i) << endl;
-  }
-
-  //print_string_vector(urls);
+  print_string_vector(urls);
 
   return 0;
 }
