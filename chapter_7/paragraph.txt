@@ -1,0 +1,8 @@
+Our table contains two kinds of entries: categories, which are enclosed in angle
+brackets, and ordinary words. Each category has one or more rules; each ordinary
+word stands for itself. When the program sees a string enclosed in angle
+brackets, we know that the string will represent a category, so we will have to
+make the program find a rule that matches the category and expand the
+right-hand part of that rule. If the program sees words that are unadorned by
+angle brackets, then we know that it will be able to place those words
+directly into the generated sentence.

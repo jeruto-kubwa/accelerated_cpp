@@ -27,7 +27,7 @@ int main()
 
   // verify that the analyses will show us something
   if(did.empty()) {
-    cout << "No students did all the homework." << endl;
+    cout << "No s tudents did all the homework." << endl;
     return 1;
   }
   if(didnt.empty()) {
