@@ -1,4 +1,4 @@
-#include <vector>
+#include <list>
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -15,9 +15,9 @@ int main()
 
   ifstream infile("grammar.txt");
 
-  vector<string> ret = gen_sentence(read_grammar(infile));
+  list<string> ret = gen_sentence(read_grammar(infile));
 
-  vector<string>::const_iterator it = ret.begin();
+  list<string>::const_iterator it = ret.begin();
 
   if(!ret.empty()) {
     cout << *it;

@@ -1,4 +1,4 @@
-#include <vector>
+#include <list>
 #include <string>
 #include <map>
 #include <iostream>
@@ -8,9 +8,9 @@
 
 using namespace std;
 
-typedef std::vector<std::string> Rule;
-typedef std::vector<Rule> Rule_collection;
-typedef std::map<std::string, std::vector<Rule> > Grammar;  
+typedef std::list<std::string> Rule;
+typedef std::list<Rule> Rule_collection;
+typedef std::map<std::string, std::list<Rule> > Grammar;  
 
 // Read in the grammar rules a table
 Grammar read_grammar(istream& in) 
@@ -19,7 +19,7 @@ Grammar read_grammar(istream& in)
   Grammar ret;
 
   while(getline(in, line)) {
-    vector<string> entry = split(line);
+    list<string> entry = split_list(line);
 
     if(!entry.empty())
       ret[entry[0]].push_back(Rule(entry.begin() + 1, entry.end()));
@@ -49,7 +49,7 @@ int nrand(int n)
 }
 
 // Expand the input string (word) given as the second argument
-void gen_aux(const Grammar& g, const string& word, vector<string>& ret)
+void gen_aux(const Grammar& g, const string& word, list<string>& ret)
 {
   // first check if word is not bracketed, then append word
   if(!bracketed(word)) {
@@ -69,7 +69,7 @@ void gen_aux(const Grammar& g, const string& word, vector<string>& ret)
     const Rule r = c[nrand(c.size())];
 
     // recursively expand the selected rule
-    for(vector<string>::const_iterator i = r.begin();
+    for(list<string>::const_iterator i = r.begin();
         i != r.end(); ++i) {
       gen_aux(g, *i, ret);
     }
@@ -77,9 +77,9 @@ void gen_aux(const Grammar& g, const string& word, vector<string>& ret)
 }
 
 // Generate a sentence given a grammar rule 
-vector<string> gen_sentence(const Grammar& g) 
+list<string> gen_sentence(const Grammar& g) 
 {
-  vector<string> ret;
+  list<string> ret;
   gen_aux(g, "<sentence>", ret);
   return ret;
 }

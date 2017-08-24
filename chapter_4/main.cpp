@@ -1,39 +1,50 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <stdexcept>
-#include <ios>
 #include <iostream>
-#include <iomanip>
+#include <fstream>
+#include <map>
+
 #include "Student_info.h"
 #include "grade.h"
 
-using std::string;        using std::vector;
-using std::cin;           using std::cout;
-using std::endl;          using std::domain_error;
-using std::setprecision;  using std::streamsize;
-using std::max;
+using namespace std;
 
+
+bool grade_compare(const Student_info& x, const Student_info& y) 
+{
+  return grade(x) < grade(y);
+}
 
 int main() 
 {
+
+  ifstream infile("students.txt");
   vector<Student_info> students;
   Student_info record;
   string::size_type maxlen = 0; // length of longest name
 
   // read and store all of the students' data.
-  while(read(cin, record)){
+  while(read(infile, record)){
     students.push_back(record);
     maxlen = max(record.name.size(), maxlen);
   }
 
   // sort the students alphabetically
-  sort(students.begin(), students.end(), compare);
+  sort(students.begin(), students.end(), grade_compare);
+
+  map<char, vector<Student_info> > student_map = 
+    students_by_grade(students);
+
+  for(map<char, vector<Student_info> >::const_iterator i =
+      student_map.begin(); i != student_map.end(); ++i) {
+
+    cout << "Grade " << i->first << ":" << endl;
+
+    display_students(i->second);
+
+  }
 
   cout << endl; // new line to seperate input from output 
-
-  // print students' names and overall grades to std output
-  display_students(students); 
-
   return 0;
 }

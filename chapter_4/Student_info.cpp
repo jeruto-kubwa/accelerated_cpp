@@ -48,9 +48,14 @@ void display_students(const vector<Student_info>& students)
       // bad code:: int 20 should be max length of the students names
       cout << students[i].name << string(20 - students[i].name.size(), ' ');
 
-      streamsize prec = cout.precision();
-      cout << setprecision(3) << grade(students[i]) << setprecision(prec);
-        
+      try {
+        double final_grade = grade(students[i]); 
+        streamsize prec = cout.precision();
+        cout << setprecision(3) << final_grade << setprecision(prec); 
+      } catch (domain_error e) {
+        cout << e.what();
+      }
+  
       cout << endl;
     }
 }
@@ -59,16 +64,20 @@ void display_students(const vector<Student_info>& students)
 void display_students(const list<Student_info>& students) 
 {
     // print out the data
-    for(list<Student_info>::const_iterator iter = students.begin(); 
-         iter!=students.end(); ++iter) {
+    for(list<Student_info>::const_iterator i=students.begin();
+        i != students.end(); ++i) {
       
       // bad code:: int 20 should be max length of the students names
-      // N.B. (*iter).name is equivalent to iter->name
-      cout << iter->name << string(20 - (iter->name).size(), ' ');
+      cout << i->name << string(20 - i->name.size(), ' ');
 
-      streamsize prec = cout.precision();
-      cout << setprecision(3) << grade(*iter)<< setprecision(prec);
-        
+      try {
+        double final_grade = grade(*i); 
+        streamsize prec = cout.precision();
+        cout << setprecision(3) << final_grade << setprecision(prec); 
+      } catch (domain_error e) {
+        cout << e.what();
+      }
+  
       cout << endl;
     }
 }
@@ -188,3 +197,33 @@ vector<Student_info> extract_didnt(vector<Student_info>& students)
 }
 
 
+// Convert double grade to letter grade
+char get_letter_grade(double grade)
+{
+  if(90 <= grade && grade <= 100)
+    return 'A';
+  else if(80 <= grade && grade < 90)
+    return 'B';
+  else if(70 <= grade && grade < 80)
+    return 'C';
+  else if(60 <= grade && grade < 70)
+    return 'D';
+
+  return 'F';
+}
+
+// Return a map<char, vector<student> > categrising students
+// by letter grade
+map<char, vector<Student_info> > 
+  students_by_grade(const vector<Student_info>& students)
+{
+  map<char, vector<Student_info> > students_by_grade; 
+
+  for(vector<Student_info>::const_iterator i = students.begin(); 
+      i != students.end(); ++i) {
+
+    double g = grade(*i);
+    students_by_grade[get_letter_grade(g)].push_back(*i);
+  }
+  return students_by_grade;
+}

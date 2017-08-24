@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <sstream>
 #include <iostream>
 
 #include "xref.h"
@@ -11,24 +12,40 @@ using namespace std;
 
 int main() 
 {
-  ifstream infile("paragraph.txt");
+  const int LINE_LENGTH = 80;
+
+  ifstream infile("long_text.txt");
   map<string, vector<int> > ret = xref(infile);
 
   // loop through map pairs
   for(map<string, vector<int> >::const_iterator it =
         ret.begin(); it != ret.end(); ++it) {
+
+    stringstream ss;
     
-    cout  << "\"" << it->first << "\" appears on line(s): ";
+    ss  << "\n\"" << it->first 
+          << "\":\n";
 
     vector<int>::const_iterator line_it = it->second.begin();
 
-    cout << *line_it;
+    ss << *line_it;
     ++line_it;
 
     while(line_it != it->second.end()) {
-      cout << ", " << *line_it;
+      ss << ", " << *line_it;
       ++line_it;
     }
+
+    string output = ss.str();
+
+    for(string::size_type i = 0; i != output.size(); ++i) {
+      cout << output[i];
+
+      if((i + 1) % LINE_LENGTH == 0)
+        cout << endl;
+
+    }
+
     cout << endl;
   }
 

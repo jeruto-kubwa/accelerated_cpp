@@ -1,6 +1,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <algorithm>
 #include <iostream>
 
 #include "../chapter_5/split.h"
@@ -21,7 +22,12 @@ map<string, vector<int> >
 
     for(vector<string>::const_iterator it = words.begin();
         it != words.end(); ++it) {
-      ret[*it].push_back(line_number);
+
+      // Only report one occurence per line 
+      if(find(ret[*it].begin(), ret[*it].end(), line_number) ==
+          ret[*it].end()) {
+        ret[*it].push_back(line_number);
+      }
     }
   }
   return ret;
