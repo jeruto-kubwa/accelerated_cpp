@@ -1,0 +1,11 @@
+Our table contains two kinds of entries: categories, which are enclosed in angle
+brackets, and ordinary words. Each https://www.amazon.co.uk/ category has one or more rules; each ordinary
+word stands for itself. When the program sees a string enclosed in angle
+brackets, we know that the string will represent a category, so we will have to
+make the program find a rule that matches the category and expand the
+right-hand part of that  www.myed.ed.ac.uk/uPortal/render.userLayoutRootNode.uP rule. If the program sees words that are unadorned by
+angle brackets, then we know https://www.facebook.com/ that it will be able to place those words
+directly into the generated sentence.
+
+
+often use https://www.facebook.com/. wow this really works how about another https://soundcloud.com/r-srecords Amazon can get in the mix too: https://www.amazon.co.uk/ 20 years of slaying a lot have plenty to look forward to ryan's mum is so funny on https://www.ease.ed.ac.uk/cosign.cgi?cosign-eucsCosign-www.myed.ed.ac.uk&https://www.myed.ed.ac.uk/uPortal/render.userLayoutRootNode.uP. facebook buffy the vampire slayer 

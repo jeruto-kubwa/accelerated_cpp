@@ -7,6 +7,7 @@
 
 #include "xref.h"
 #include "../chapter_5/split.h"
+#include "../chapter_6/url.h"
 
 using namespace std;
 
@@ -14,17 +15,17 @@ int main()
 {
   const int LINE_LENGTH = 80;
 
-  ifstream infile("long_text.txt");
-  map<string, vector<int> > ret = xref(infile);
+  ifstream infile("paragraph_with_urls.txt");
+  map<string, vector<int> > ret = xref(infile, find_urls);
 
   // loop through map pairs
   for(map<string, vector<int> >::const_iterator it =
         ret.begin(); it != ret.end(); ++it) {
 
     stringstream ss;
-    
-    ss  << "\n\"" << it->first 
-          << "\":\n";
+  
+    ss  << "\n\"" << it->first << "\" occurs on "
+        << ((it->second.size() > 1) ? "lines" : "line") << ":\n";
 
     vector<int>::const_iterator line_it = it->second.begin();
 
