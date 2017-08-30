@@ -94,21 +94,22 @@ double optimistic_median(const Student_info& s)
 //   return median(grades);
 // }
 
-double analysis(const vector<Student_info>& v, 
-                double grading_function(const Student_info&))
-{
-  vector<double> grades;
-  transform(v.begin(), v.end(), back_inserter(grades), grading_function); 
-  return median(grades);  
-}
+// double analysis(const vector<Student_info>& v, 
+//                 double grading_function(const Student_info&))
+// {
+//   vector<double> grades;
+//   transform(v.begin(), v.end(), back_inserter(grades), grading_function); 
+//   return median(grades);  
+// }
 
-void write_analysis(ostream& out, const string& name,
-                    double grading_function(const Student_info&), 
-                    const vector<Student_info>& did, 
-                    const vector<Student_info>& didnt) 
-{
-  out << name << "(did): " << analysis(did, grading_function) << ", " << 
-  name << "(didnt): " << analysis(didnt, grading_function) << endl; 
 
-}
+// void write_analysis(ostream& out, const string& name,
+//                     double grading_function(const Student_info&), 
+//                     const vector<Student_info>& did, 
+//                     const vector<Student_info>& didnt) 
+// {
+//   out << name << "(did): " << analysis(did, grading_function) << ", " << 
+//   name << "(didnt): " << analysis(didnt, grading_function) << endl; 
+
+// }
 

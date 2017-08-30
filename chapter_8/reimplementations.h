@@ -72,4 +72,50 @@ bool binary_search_tom(Ran begin, Ran end, const X& x)
   return false;
 }
 
+// Compares the elements in the range [first1,last1)
+//  with those in the range beginning at 
+// first2, and returns true if all of the elements in both ranges match.
+
+template<class In>
+bool equal_tom(In begin1, In end1, In begin2)
+{
+  while(begin1 != end1) {
+    if(*begin1++ != *begin2++) 
+      return false;
+  }
+  return true;
+}
+
+// Copies the elements in the range [first,last) 
+// to the range beginning at 
+// result, except those elements for which pred returns true.
+
+template<class In, class Out, class Predicate>
+Out remove_copy_if_tom(In begin, In end, Out result, Predicate pred)
+{
+  for( ; begin != end; begin++) {
+    if(!pred(*begin))
+      *result++ = *begin;
+  }
+  return result;
+}
+
+template<class In, class Out, class Operation>
+Out transform_tom(In begin, In end, Out result, Operation op)
+{
+  while(begin != end) {
+    *result++ = op(*begin++);
+  }
+  return result;
+}
+
+template<class For, class X>
+X accumulate_tom(For begin, For end, X x)
+{
+  while(begin != end) {
+    x += *begin++;
+  }
+  return x;
+}
+
 #endif
